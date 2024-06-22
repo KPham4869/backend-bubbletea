@@ -1,0 +1,42 @@
+Đăng Ký Người Dùng
+Method: POST
+URL: http://localhost:3000/api/auth/register
+
+{
+  "username": "user123",
+  "email": "user123@example.com",
+  "password": "password123",
+  "resPassword": "password123"
+}
+------------------------------------------------------------------------------------------------
+Đăng Nhập Người Dùng
+Method: POST
+URL: http://localhost:3000/api/auth/login
+
+{
+  "email": "user123@example.com",
+  "password": "password123"
+}
+------------------------------------------------------------------------------------------------
+Đổi mật khẩu
+Method: POST
+URL: http://localhost:3000/api/auth/change-password.
+{
+  "email": "user123@example.com",
+  "currentPassword": "oldpassword123",
+  "newPassword": "newpassword123",
+  "resNewPassword": "newpassword123"
+}
+------------------------------------------------------------------------------------------------
+Thêm sản phẩm
+Method: POST
+URL: http://localhost:3000/api/products
+
+{
+  "name": "Milk Tea",
+  "price": 5,
+  "description": "Delicious milk tea",
+  "category": "Beverages",
+  "stock": 100
+}
+------------------------------------------------------------------------------------------------
