@@ -1,17 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const connectDB = require('./config/database');
-const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const connectDB = require("./config/database");
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
+const imageRoutes = require("./routes/imageRoutes");
+require("dotenv").config();
 
 const app = express();
 
 connectDB();
 
 app.use(bodyParser.json());
-app.use('/products', productRoutes);
-app.use('/api/auth', authRoutes);
+
+app.use('/api/products', productRoutes);
+app.use("/api/auth", authRoutes);
+app.use('/api/images', imageRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

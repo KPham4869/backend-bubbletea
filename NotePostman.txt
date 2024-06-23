@@ -35,8 +35,6 @@ URL: http://localhost:3000/api/products
 {
   "name": "Milk Tea",
   "price": 5,
-  "description": "Delicious milk tea",
-  "category": "Beverages",
-  "stock": 100
+  "image" : " "
 }
 ------------------------------------------------------------------------------------------------
