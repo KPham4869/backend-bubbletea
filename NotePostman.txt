@@ -3,10 +3,10 @@ Method: POST
 URL: http://localhost:3000/api/auth/register
 
 {
-  "username": "user123",
-  "email": "user123@example.com",
-  "password": "password123",
-  "resPassword": "password123"
+  "username": "hao12345",
+  "email": "hao12345@example.com",
+  "password": "hao12345",
+  "resPassword": "hao12345"
 }
 ------------------------------------------------------------------------------------------------
 Đăng Nhập Người Dùng
@@ -34,6 +34,7 @@ URL: http://localhost:3000/api/products
 
 {
   "name": "Milk Tea",
+  "description": "Trà sữa tốt lắm nha",
   "price": 5,
   "image" : " "
 }

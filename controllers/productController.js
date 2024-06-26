@@ -1,43 +1,87 @@
 const Product = require('../models/productModel');
-const Counter = require('../middlewares/counterMiddlewares'); // Import counter model
 const path = require('path');
 
-const getAllProducts = async (req, res) => {
+
+const createProduct = async (req, res) => {
   try {
-      const products = await Product.find();
-      res.status(200).json(products);
+    const { ID_Product, Name, Description, Price, Image } = req.body;
+    const imagePath = path.join(__dirname, '../assets/images', Image);
+    const newProduct = new Product(
+      { ID_Product, 
+        Name, 
+        Description, 
+        Price,
+        Image: imagePath
+       });
+    await newProduct.save();
+    res.status(201).json(newProduct);
   } catch (err) {
-      res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
-const addProduct = async (req, res) => {
+const getProductImage = async (req, res) => {
   try {
-    const { name, description, price, imageName } = req.body;
-    const imagePath = path.join(__dirname, '../images', imageName);
+    const { id } = req.params;
+    const product = await Product.findById(id);
 
-    const counter = await Counter.findOneAndUpdate(
-      { name: 'productId' },
-      { $inc: { seq: 1 } },
-      { new: true, upsert: true }
-    );
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
 
-    const newProduct = new Product({
-      id: counter.seq, 
-      name,
-      description,
-      price,
-      imageUrl: imagePath
-    });
-
-    await newProduct.save();
-
-    res.status(201).json({message: 'Thêm sản phẩm thành công', newProduct}); 
+    res.json({ Image: product.Image }); // Trả về chuỗi base64 của ảnh
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+const updateProduct= async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { Quantity } = req.body;
+
+    const updatedProduct = await Product.findOneAndUpdate(
+      { ID_Product: id },
+      { Quantity },
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(updatedProduct);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProduct = await Product.findOneAndDelete({ ID_Product: id });
+
+    if (!deletedProduct) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json({ message: 'Product deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 module.exports = {
-  getAllProducts,
-  addProduct
+  createProduct,
+  getProductImage,
+  updateProduct,
+  deleteProduct,
+  getAllProducts
 };
