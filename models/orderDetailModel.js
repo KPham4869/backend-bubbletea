@@ -1,11 +1,11 @@
-
+// src/models/orderDetail.js
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const OrderDetailSchema = new Schema({
-  ID_OrderDetail: { type: Number, required: true, unique: true },
+const orderDetailSchema = new mongoose.Schema({
+  ID_Product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
   Quantity: { type: Number, required: true },
-  ID_Product: { type: Number, required: true, ref: 'Product' }
 });
+orderDetailSchema.add({ _id: mongoose.Schema.Types.ObjectId });
+const OrderDetail = mongoose.model('OrderDetail', orderDetailSchema);
 
-module.exports = mongoose.model('OrderDetail', OrderDetailSchema);
+module.exports = OrderDetail;

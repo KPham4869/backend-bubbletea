@@ -11,7 +11,7 @@ const createProduct = async (req, res) => {
         Name, 
         Description, 
         Price,
-        Image: imagePath
+        Image: 'file:///' + imagePath
        });
     await newProduct.save();
     res.status(201).json(newProduct);
@@ -19,20 +19,7 @@ const createProduct = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-const getProductImage = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const product = await Product.findById(id);
 
-    if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-
-    res.json({ Image: product.Image }); // Trả về chuỗi base64 của ảnh
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 const updateProduct= async (req, res) => {
   try {
     const { id } = req.params;
@@ -80,7 +67,6 @@ const getAllProducts = async (req, res) => {
 
 module.exports = {
   createProduct,
-  getProductImage,
   updateProduct,
   deleteProduct,
   getAllProducts

@@ -4,9 +4,9 @@ URL: http://localhost:3000/api/auth/register
 
 {
   "username": "hao12345",
-  "email": "hao12345@example.com",
-  "password": "hao12345",
-  "resPassword": "hao12345"
+  "email": "huuhao555@gmail.com",
+  "password": "hao12345678@",
+  "resPassword": "hao12345678@"
 }
 ------------------------------------------------------------------------------------------------
 Đăng Nhập Người Dùng
@@ -14,13 +14,21 @@ Method: POST
 URL: http://localhost:3000/api/auth/login
 
 {
-  "email": "user123@example.com",
-  "password": "password123"
+  "email": "huuhao555@gmail.com,
+  "password": "hao12345678@"
+}
+--------------
+Check OTP
+http://localhost:3000/api/otp//verify-otp
+
+{
+  "email": "huuhao555@gmail.com",
+  "otpToken": ""
 }
 ------------------------------------------------------------------------------------------------
 Đổi mật khẩu
 Method: POST
-URL: http://localhost:3000/api/auth/change-password.
+URL: http://localhost:3000/api/auth/change-password
 {
   "email": "user123@example.com",
   "currentPassword": "oldpassword123",
@@ -33,9 +41,10 @@ Method: POST
 URL: http://localhost:3000/api/products
 
 {
-  "name": "Milk Tea",
-  "description": "Trà sữa tốt lắm nha",
-  "price": 5,
-  "image" : " "
+  "ID_Product": 1,
+  "Name": "Milk Tea",
+  "Description": "Trà sữa tốt lắm nha",
+  "Price": 5,
+  "Image" : " "
 }
 ------------------------------------------------------------------------------------------------

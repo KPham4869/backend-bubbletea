@@ -1,56 +1,20 @@
-// const Order = require('../models/orderModel');
-// const OrderDetail = require('../models/orderDetailModel');
-// const Product = require('../models/productModel');
 
-// const createOrder = async (req, res) => {
-//     try {
-//         const { ID_User, items } = req.body; // items: [{ ID_Product, Quantity }]
-//         let totalAmount = 0;
-//         const orderItems = [];
+const Order = require('../models/OrderModel');
+const OrderDetail = require('../models/orderDetailModel'); 
 
-//         for (const item of items) {
-//             const product = await Product.findOne({ ID_Product: item.ID_Product });
-//             if (!product) {
-//                 return res.status(404).json({ error: 'Product not found' });
-//             }
+exports.createOrder = async (req, res) => {
+  const { TotalAmount, ID_OrderDetail } = req.body;
 
-//             const itemTotal = product.price * item.Quantity;
-//             totalAmount += itemTotal;
+  try {
+    const newOrder = new Order({
+      TotalAmount,
+    });
+    await newOrder.save();
 
-//             orderItems.push({
-//                 name: product.name,
-//                 price: product.price,
-//                 quantity: item.Quantity
-//             });
-//         }
+    res.status(201).json({ message: 'Order created successfully', order: newOrder });
+  } catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
 
-//         const newOrder = new Order({
-//             ID_Order: new Date().getTime(),  // or another unique ID generator
-//             ID_User,
-//             TotalAmount: totalAmount,
-//             items: orderItems
-//         });
-
-//         await newOrder.save();
-
-//         for (const item of items) {
-//             const product = await Product.findOne({ ID_Product: item.ID_Product });
-
-//             const newOrderDetail = new OrderDetail({
-//                 ID_OrderDetail: new Date().getTime(),  // or another unique ID generator
-//                 ID_Order: newOrder._id,
-//                 ID_Product: product._id,
-//                 Quantity: item.Quantity
-//             });
-
-//             await newOrderDetail.save();
-//         }
-
-//         res.status(201).json(newOrder);
-//     } catch (error) {
-//         res.status(500).json({ error: 'Error creating order' });
-//     }
-// };
-// module.exports = {
-//     createOrder
-// }

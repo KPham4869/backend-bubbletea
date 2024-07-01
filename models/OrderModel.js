@@ -1,11 +1,9 @@
-
+// models/Order.js
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const OrderSchema = new Schema({
-  ID_Order: { type: Number, required: true, unique: true },
-  ID_OrderDetail: { type: Number, required: true, ref: 'OrderDetail' },
-  TotalAmount: { type: Number, required: true }
-});
+const orderSchema = new Schema({
+  TotalAmount: { type: Number, required: true },
+}, { timestamps: true });
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Order', orderSchema);
