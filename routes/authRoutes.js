@@ -7,5 +7,5 @@ router.post('/verify-otp', authController.verifyOTP);
 router.post('/login', authController.login);
 router.post('/change-password', authController.changePassword);
 router.get('/', authController.getUser);
-
+// router.post('/reset-password', authController.resetPassword);
 module.exports = router;

@@ -30,10 +30,10 @@ http://localhost:3000/api/otp//verify-otp
 Method: POST
 URL: http://localhost:3000/api/auth/change-password
 {
-  "email": "user123@example.com",
-  "currentPassword": "oldpassword123",
-  "newPassword": "newpassword123",
-  "resNewPassword": "newpassword123"
+  "email": "huuhao555@gmail.com",
+  "currentPassword": "hao12345678@",
+  "newPassword": "12345678Hh@",
+  "resNewPassword": "12345678Hh@"
 }
 ------------------------------------------------------------------------------------------------
 Thêm sản phẩm

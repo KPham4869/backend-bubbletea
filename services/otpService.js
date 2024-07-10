@@ -1,6 +1,6 @@
 const speakeasy = require('speakeasy');
 const nodemailer = require('nodemailer');
-const { mail } = require('../mail/mailForm'); // Assuming mailForm exports a function for generating HTML content
+const { mail } = require('../mail/mailForm'); 
 
 class OTPService {
   constructor() {
@@ -46,7 +46,6 @@ class OTPService {
         },
       });
       const info = await transporter.sendMail(mailOptions);
-      console.log('Message sent: %s', info.messageId);
 
       return token; 
     } catch (error) {

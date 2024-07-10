@@ -1,4 +1,3 @@
-
 const Order = require('../models/OrderModel');
 const OrderDetail = require('../models/orderDetailModel'); 
 
@@ -17,4 +16,3 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-

@@ -15,6 +15,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required']
     }
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
